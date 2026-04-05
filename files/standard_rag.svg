@@ -1,0 +1,213 @@
+<svg viewBox="0 0 900 1020" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','Fira Code',monospace">
+<defs>
+  <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#060b14"/><stop offset="100%" style="stop-color:#0c1828"/>
+  </linearGradient>
+  <linearGradient id="gBlue"   x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#2563eb"/><stop offset="100%" style="stop-color:#60a5fa"/></linearGradient>
+  <linearGradient id="gGreen"  x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#059669"/><stop offset="100%" style="stop-color:#34d399"/></linearGradient>
+  <linearGradient id="gOrange" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#d97706"/><stop offset="100%" style="stop-color:#fb923c"/></linearGradient>
+  <linearGradient id="gPurple" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#7c3aed"/><stop offset="100%" style="stop-color:#a78bfa"/></linearGradient>
+  <linearGradient id="gRed"    x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#dc2626"/><stop offset="100%" style="stop-color:#f87171"/></linearGradient>
+  <linearGradient id="gCyan"   x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#0891b2"/><stop offset="100%" style="stop-color:#22d3ee"/></linearGradient>
+  <linearGradient id="headerBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" style="stop-color:#1d4ed8"/><stop offset="100%" style="stop-color:#3b82f6"/>
+  </linearGradient>
+  <marker id="aB" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#3b82f6"/></marker>
+  <marker id="aG" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#34d399"/></marker>
+  <marker id="aO" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#fb923c"/></marker>
+  <marker id="aP" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#a78bfa"/></marker>
+  <marker id="aR" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#f87171"/></marker>
+  <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+
+<!-- Background -->
+<rect width="900" height="1020" fill="url(#bg)"/>
+<pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+  <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#0f1f35" stroke-width="1"/>
+</pattern>
+<rect width="900" height="1020" fill="url(#grid)"/>
+
+<!-- Header band -->
+<rect x="0" y="0" width="900" height="80" fill="url(#headerBlue)" opacity="0.15"/>
+<rect x="0" y="78" width="900" height="2" fill="url(#gBlue)"/>
+
+<!-- Title -->
+<text x="450" y="34" text-anchor="middle" fill="#eff6ff" font-size="26" font-weight="800" letter-spacing="3" filter="url(#glow)">STANDARD RAG PIPELINE</text>
+<text x="450" y="58" text-anchor="middle" fill="#3b82f6" font-size="11" letter-spacing="5">TF-IDF  ·  SENTENCE TRANSFORMERS  ·  HNSW  ·  LSH  ·  CAG  ·  CONTEXT ENGINEERING</text>
+
+<!-- ─────────────────────────────────────────
+     STEP 1: INGESTION
+     ───────────────────────────────────────── -->
+
+<!-- Step badge -->
+<circle cx="50" cy="115" r="18" fill="#1d4ed8" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="50" y="120" text-anchor="middle" fill="#fff" font-size="13" font-weight="800">1</text>
+<text x="80" y="121" fill="#60a5fa" font-size="13" font-weight="700" letter-spacing="1">INGESTION</text>
+
+<!-- Documents box -->
+<rect x="40" y="136" width="820" height="64" rx="8" fill="#0a1628" stroke="#334155" stroke-width="1.5"/>
+<rect x="40" y="136" width="6" height="64" rx="3" fill="url(#gOrange)"/>
+<text x="480" y="160" text-anchor="middle" fill="#94a3b8" font-size="10" font-weight="600" letter-spacing="2">INPUT DOCUMENTS</text>
+<text x="200" y="185" text-anchor="middle" fill="#fb923c" font-size="12" font-weight="700">📄 .txt  .md</text>
+<text x="360" y="185" text-anchor="middle" fill="#fb923c" font-size="12" font-weight="700">📄 .pdf</text>
+<text x="520" y="185" text-anchor="middle" fill="#fb923c" font-size="12" font-weight="700">📋 .json  .csv</text>
+<text x="720" y="185" text-anchor="middle" fill="#64748b" font-size="10">drop into  /data/</text>
+
+<!-- Arrow -->
+<line x1="450" y1="200" x2="450" y2="222" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#aB)"/>
+
+<!-- ─────────────────────────────────────────
+     STEP 2: AGENTIC CHUNKING + TF-IDF
+     ───────────────────────────────────────── -->
+<circle cx="50" cy="257" r="18" fill="#1d4ed8" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="50" y="262" text-anchor="middle" fill="#fff" font-size="13" font-weight="800">2</text>
+<text x="80" y="263" fill="#60a5fa" font-size="13" font-weight="700" letter-spacing="1">AGENTIC CHUNKING  +  TF-IDF</text>
+
+<rect x="40" y="274" width="396" height="124" rx="8" fill="#0a1628" stroke="#d97706" stroke-width="1.5"/>
+<text x="238" y="297" text-anchor="middle" fill="#fb923c" font-size="11" font-weight="700">⚡ Agentic Chunker</text>
+<line x1="50" y1="303" x2="426" y2="303" stroke="#1e293b" stroke-width="1"/>
+<text x="238" y="320" text-anchor="middle" fill="#64748b" font-size="9">Sentence boundary detection</text>
+<text x="238" y="334" text-anchor="middle" fill="#64748b" font-size="9">TF-IDF vocabulary overlap scoring</text>
+<text x="238" y="348" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="600">Topic break when overlap drops sharply</text>
+<text x="238" y="362" text-anchor="middle" fill="#64748b" font-size="9">200w chunks  ·  40w overlap  (chunk index)</text>
+<text x="238" y="376" text-anchor="middle" fill="#64748b" font-size="9">500w pages  ·  or real PDF pages  (page index)</text>
+<text x="238" y="390" text-anchor="middle" fill="#475569" font-size="8">base_id_chunk0, base_id_chunk1 …  IDs</text>
+
+<rect x="464" y="274" width="396" height="124" rx="8" fill="#0a1628" stroke="#7c3aed" stroke-width="1.5"/>
+<text x="662" y="297" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="700">📐 TF-IDF Vectoriser  (offline)</text>
+<line x1="474" y1="303" x2="850" y2="303" stroke="#1e293b" stroke-width="1"/>
+<text x="662" y="320" text-anchor="middle" fill="#64748b" font-size="9">idf[w] = log((N+1)/(doc_count+1)) + 1</text>
+<text x="662" y="334" text-anchor="middle" fill="#64748b" font-size="9">tf_idf = (count/total) × idf</text>
+<text x="662" y="348" text-anchor="middle" fill="#a78bfa" font-size="9" font-weight="600">Fallback embedder when HF unavailable</text>
+<text x="662" y="362" text-anchor="middle" fill="#64748b" font-size="9">Context compression: score sentences</text>
+<text x="662" y="376" text-anchor="middle" fill="#64748b" font-size="9">Drop low-overlap sentences pre-LLM</text>
+<text x="662" y="390" text-anchor="middle" fill="#475569" font-size="8">~30% token reduction in practice</text>
+
+<!-- Arrow -->
+<line x1="450" y1="398" x2="450" y2="420" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#aB)"/>
+
+<!-- ─────────────────────────────────────────
+     STEP 3: SENTENCE TRANSFORMERS
+     ───────────────────────────────────────── -->
+<circle cx="50" cy="455" r="18" fill="#1d4ed8" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="50" y="460" text-anchor="middle" fill="#fff" font-size="13" font-weight="800">3</text>
+<text x="80" y="461" fill="#60a5fa" font-size="13" font-weight="700" letter-spacing="1">SENTENCE TRANSFORMERS  (EMBEDDINGS)</text>
+
+<rect x="40" y="472" width="820" height="80" rx="8" fill="#0a1628" stroke="#7c3aed" stroke-width="1.5"/>
+<rect x="40" y="472" width="6" height="80" rx="3" fill="url(#gPurple)"/>
+<text x="232" y="497" text-anchor="middle" fill="#a78bfa" font-size="12" font-weight="700">🤗 BAAI/bge-small-en-v1.5</text>
+<text x="232" y="514" text-anchor="middle" fill="#64748b" font-size="9">dim=384  ·  normalize_embeddings=True</text>
+<text x="232" y="528" text-anchor="middle" fill="#64748b" font-size="9">Contrastive training for retrieval</text>
+<text x="232" y="542" text-anchor="middle" fill="#475569" font-size="8">Cosine sim = dot product when normalized</text>
+<line x1="420" y1="480" x2="420" y2="544" stroke="#1e293b" stroke-width="1"/>
+<text x="620" y="497" text-anchor="middle" fill="#64748b" font-size="9" font-weight="600">Alternative Models</text>
+<text x="570" y="514" text-anchor="middle" fill="#64748b" font-size="9">BAAI/bge-base-en-v1.5  (768d)</text>
+<text x="570" y="528" text-anchor="middle" fill="#64748b" font-size="9">BAAI/bge-large-en-v1.5  (1024d)</text>
+<text x="760" y="514" text-anchor="middle" fill="#64748b" font-size="9">all-MiniLM-L6-v2  (384d)</text>
+<text x="760" y="528" text-anchor="middle" fill="#64748b" font-size="9">thenlper/gte-small  (384d)</text>
+
+<!-- Arrow -->
+<line x1="450" y1="552" x2="450" y2="574" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#aB)"/>
+
+<!-- ─────────────────────────────────────────
+     STEP 4: CHROMADB + HNSW + LSH
+     ───────────────────────────────────────── -->
+<circle cx="50" cy="609" r="18" fill="#1d4ed8" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="50" y="614" text-anchor="middle" fill="#fff" font-size="13" font-weight="800">4</text>
+<text x="80" y="615" fill="#60a5fa" font-size="13" font-weight="700" letter-spacing="1">CHROMADB  ·  HNSW  ·  LSH  (VECTOR STORE)</text>
+
+<!-- ChromaDB -->
+<rect x="40" y="626" width="260" height="130" rx="8" fill="#0a1628" stroke="#059669" stroke-width="1.5"/>
+<rect x="40" y="626" width="6" height="130" rx="3" fill="url(#gGreen)"/>
+<text x="170" y="647" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">🗄 ChromaDB</text>
+<line x1="50" y1="653" x2="290" y2="653" stroke="#1e293b" stroke-width="1"/>
+<text x="170" y="668" text-anchor="middle" fill="#34d399" font-size="9" font-weight="600">documents  (chunk index)</text>
+<text x="170" y="681" text-anchor="middle" fill="#64748b" font-size="9">200w chunks · cosine · persistent</text>
+<text x="170" y="695" text-anchor="middle" fill="#a78bfa" font-size="9" font-weight="600">page_index  (page index)</text>
+<text x="170" y="708" text-anchor="middle" fill="#64748b" font-size="9">500w pages · cosine · persistent</text>
+<text x="170" y="724" text-anchor="middle" fill="#64748b" font-size="9">Two collections queried in parallel</text>
+<text x="170" y="738" text-anchor="middle" fill="#475569" font-size="8">./chroma_db/chroma.sqlite3</text>
+<text x="170" y="750" text-anchor="middle" fill="#475569" font-size="8">get_or_create_collection()</text>
+
+<!-- HNSW -->
+<rect x="320" y="626" width="260" height="130" rx="8" fill="#0a1628" stroke="#059669" stroke-width="1.5"/>
+<text x="450" y="647" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">📐 HNSW Algorithm</text>
+<line x1="330" y1="653" x2="570" y2="653" stroke="#1e293b" stroke-width="1"/>
+<text x="450" y="668" text-anchor="middle" fill="#64748b" font-size="9">Hierarchical Navigable Small World</text>
+<!-- mini HNSW graph -->
+<text x="450" y="683" text-anchor="middle" fill="#475569" font-size="8">Layer 2:  A ────────── F</text>
+<text x="450" y="695" text-anchor="middle" fill="#475569" font-size="8">Layer 1:  A ── C ── D ── F</text>
+<text x="450" y="707" text-anchor="middle" fill="#475569" font-size="8">Layer 0:  A─B─C─D─E─F─G</text>
+<text x="450" y="722" text-anchor="middle" fill="#34d399" font-size="9" font-weight="600">O(log n) ANN search</text>
+<text x="450" y="736" text-anchor="middle" fill="#64748b" font-size="9">Greedy descent from top layer</text>
+<text x="450" y="750" text-anchor="middle" fill="#475569" font-size="8">Sub-ms over 1M vectors</text>
+
+<!-- LSH -->
+<rect x="600" y="626" width="260" height="130" rx="8" fill="#0a1628" stroke="#059669" stroke-width="1.5"/>
+<text x="730" y="647" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">🔑 LSH Pre-filter</text>
+<line x1="610" y1="653" x2="850" y2="653" stroke="#1e293b" stroke-width="1"/>
+<text x="730" y="668" text-anchor="middle" fill="#64748b" font-size="9">Locality Sensitive Hashing</text>
+<text x="730" y="682" text-anchor="middle" fill="#64748b" font-size="9">Similar vectors → same bucket</text>
+<text x="730" y="696" text-anchor="middle" fill="#64748b" font-size="9">Multiple hash tables → candidates</text>
+<text x="730" y="710" text-anchor="middle" fill="#34d399" font-size="9" font-weight="600">Fast candidate pre-selection</text>
+<text x="730" y="724" text-anchor="middle" fill="#64748b" font-size="9">HNSW refines LSH candidates</text>
+<text x="730" y="738" text-anchor="middle" fill="#64748b" font-size="9">Together: fast + accurate ANN</text>
+<text x="730" y="752" text-anchor="middle" fill="#475569" font-size="8">hnsw:space = cosine</text>
+
+<!-- Arrow -->
+<line x1="450" y1="756" x2="450" y2="778" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#aB)"/>
+
+<!-- ─────────────────────────────────────────
+     STEP 5: CAG + CONTEXT ENGINEERING
+     ───────────────────────────────────────── -->
+<circle cx="50" cy="813" r="18" fill="#1d4ed8" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="50" y="818" text-anchor="middle" fill="#fff" font-size="13" font-weight="800">5</text>
+<text x="80" y="819" fill="#60a5fa" font-size="13" font-weight="700" letter-spacing="1">CAG  +  CONTEXT ENGINEERING  +  LLM</text>
+
+<!-- Redis -->
+<rect x="40" y="830" width="196" height="140" rx="8" fill="#0a1628" stroke="#dc2626" stroke-width="1.5"/>
+<rect x="40" y="830" width="6" height="140" rx="3" fill="url(#gRed)"/>
+<text x="138" y="851" text-anchor="middle" fill="#f87171" font-size="11" font-weight="700">🔴 Redis  (CAG)</text>
+<line x1="50" y1="857" x2="226" y2="857" stroke="#1e293b" stroke-width="1"/>
+<text x="138" y="872" text-anchor="middle" fill="#64748b" font-size="9">Cache-Augmented Gen</text>
+<text x="138" y="886" text-anchor="middle" fill="#34d399" font-size="9" font-weight="600">HIT → ~2ms return</text>
+<text x="138" y="900" text-anchor="middle" fill="#f87171" font-size="9" font-weight="600">MISS → pipeline</text>
+<text x="138" y="914" text-anchor="middle" fill="#64748b" font-size="9">SHA256 key · TTL 3600s</text>
+<text x="138" y="928" text-anchor="middle" fill="#64748b" font-size="9">40%+ hit rate typical</text>
+<text x="138" y="942" text-anchor="middle" fill="#475569" font-size="8">JSON payload cached</text>
+<text x="138" y="958" text-anchor="middle" fill="#475569" font-size="8">answer+sources+scores</text>
+
+<!-- Context Engine -->
+<rect x="256" y="830" width="280" height="140" rx="8" fill="#0a1628" stroke="#7c3aed" stroke-width="1.5"/>
+<text x="396" y="851" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="700">⚙ Context Engine</text>
+<line x1="266" y1="857" x2="526" y2="857" stroke="#1e293b" stroke-width="1"/>
+<text x="278" y="873" fill="#f97316" font-size="9" font-weight="700">①</text><text x="292" y="873" fill="#e2e8f0" font-size="9">QueryRewriter</text><text x="396" y="873" fill="#64748b" font-size="9">pronouns</text>
+<text x="278" y="889" fill="#f97316" font-size="9" font-weight="700">②</text><text x="292" y="889" fill="#e2e8f0" font-size="9">Two-Stage Retrieve</text><text x="406" y="889" fill="#64748b" font-size="9">page+chunk</text>
+<text x="278" y="905" fill="#f97316" font-size="9" font-weight="700">③</text><text x="292" y="905" fill="#e2e8f0" font-size="9">MMR Re-rank</text><text x="386" y="905" fill="#64748b" font-size="9">λ=0.7 diversity</text>
+<text x="278" y="921" fill="#f97316" font-size="9" font-weight="700">④</text><text x="292" y="921" fill="#e2e8f0" font-size="9">Compressor</text><text x="378" y="921" fill="#64748b" font-size="9">TF-IDF drop</text>
+<text x="278" y="937" fill="#f97316" font-size="9" font-weight="700">⑤</text><text x="292" y="937" fill="#e2e8f0" font-size="9">TokenBudget</text><text x="384" y="937" fill="#64748b" font-size="9">3000 tokens</text>
+<text x="278" y="953" fill="#f97316" font-size="9" font-weight="700">⑥</text><text x="292" y="953" fill="#e2e8f0" font-size="9">PromptBuilder</text><text x="388" y="953" fill="#64748b" font-size="9">structured</text>
+<text x="278" y="966" fill="#f97316" font-size="9" font-weight="700">⑦</text><text x="292" y="966" fill="#e2e8f0" font-size="9">Memory</text><text x="360" y="966" fill="#64748b" font-size="9">6-turn window</text>
+
+<!-- LLM -->
+<rect x="556" y="830" width="304" height="140" rx="8" fill="#0a1628" stroke="#2563eb" stroke-width="1.5"/>
+<text x="708" y="851" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="700">🤖 LLM  →  ✅ Answer</text>
+<line x1="566" y1="857" x2="850" y2="857" stroke="#1e293b" stroke-width="1"/>
+<rect x="566" y="864" width="130" height="60" rx="5" fill="#060e1c" stroke="#d97706" stroke-width="1"/>
+<text x="631" y="882" text-anchor="middle" fill="#fb923c" font-size="10" font-weight="700">Gemini</text>
+<text x="631" y="896" text-anchor="middle" fill="#64748b" font-size="8">flash-lite · cloud</text>
+<text x="631" y="909" text-anchor="middle" fill="#64748b" font-size="8">retry on 429</text>
+<text x="631" y="920" text-anchor="middle" fill="#475569" font-size="7">free tier</text>
+<rect x="710" y="864" width="130" height="60" rx="5" fill="#060e1c" stroke="#059669" stroke-width="1"/>
+<text x="775" y="882" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700">Ollama</text>
+<text x="775" y="896" text-anchor="middle" fill="#64748b" font-size="8">llama3.2 · local</text>
+<text x="775" y="909" text-anchor="middle" fill="#64748b" font-size="8">no quota · private</text>
+<text x="775" y="920" text-anchor="middle" fill="#475569" font-size="7">recommended</text>
+<text x="708" y="944" text-anchor="middle" fill="#64748b" font-size="9">answer · sources · scores · cache_hit</text>
+<text x="708" y="958" text-anchor="middle" fill="#64748b" font-size="9">context_steps · conversation_memory</text>
+
+<!-- footer -->
+<rect x="0" y="992" width="900" height="28" fill="#060b14"/>
+<text x="450" y="1010" text-anchor="middle" fill="#1e3a5f" font-size="9" letter-spacing="2">STANDARD RAG  ·  rag.py  ·  context_engine.py  ·  create_vector_db.py  ·  search.py</text>
+
+</svg>

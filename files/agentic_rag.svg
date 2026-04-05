@@ -1,0 +1,222 @@
+<svg viewBox="0 0 900 1060" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','Fira Code',monospace">
+<defs>
+  <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#080612"/><stop offset="100%" style="stop-color:#130820"/>
+  </linearGradient>
+  <linearGradient id="gPink"   x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#be185d"/><stop offset="100%" style="stop-color:#f472b6"/></linearGradient>
+  <linearGradient id="gGreen"  x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#059669"/><stop offset="100%" style="stop-color:#34d399"/></linearGradient>
+  <linearGradient id="gCyan"   x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#0891b2"/><stop offset="100%" style="stop-color:#22d3ee"/></linearGradient>
+  <linearGradient id="gYellow" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#b45309"/><stop offset="100%" style="stop-color:#fbbf24"/></linearGradient>
+  <linearGradient id="gOrange" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#d97706"/><stop offset="100%" style="stop-color:#fb923c"/></linearGradient>
+  <linearGradient id="gBlue"   x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#2563eb"/><stop offset="100%" style="stop-color:#60a5fa"/></linearGradient>
+  <linearGradient id="headerPink" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" style="stop-color:#831843"/><stop offset="100%" style="stop-color:#9d174d"/>
+  </linearGradient>
+  <marker id="aPk" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#f472b6"/></marker>
+  <marker id="aG"  markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#34d399"/></marker>
+  <marker id="aC"  markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#22d3ee"/></marker>
+  <marker id="aY"  markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#fbbf24"/></marker>
+  <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="glowPink"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+
+<!-- Background -->
+<rect width="900" height="1060" fill="url(#bg)"/>
+<pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+  <circle cx="1" cy="1" r="0.8" fill="#1a0a2e" opacity="0.9"/>
+</pattern>
+<rect width="900" height="1060" fill="url(#dots)"/>
+
+<!-- Ambient glow centre -->
+<ellipse cx="450" cy="520" rx="380" ry="320" fill="#be185d" opacity="0.03"/>
+
+<!-- Header -->
+<rect x="0" y="0" width="900" height="80" fill="url(#headerPink)" opacity="0.2"/>
+<rect x="0" y="78" width="900" height="2" fill="url(#gPink)"/>
+<text x="450" y="34" text-anchor="middle" fill="#fdf2f8" font-size="26" font-weight="800" letter-spacing="3" filter="url(#glowPink)">AGENTIC RAG PIPELINE</text>
+<text x="450" y="58" text-anchor="middle" fill="#ec4899" font-size="11" letter-spacing="5">LLM-DRIVEN TOOL USE  ·  REACT LOOP  ·  SELF-REFLECTION  ·  ITERATIVE RETRIEVAL</text>
+
+<!-- ─────────────────────────────────────────
+     VS comparison banner
+     ───────────────────────────────────────── -->
+<rect x="40" y="92" width="820" height="40" rx="6" fill="#1a0a2e" stroke="#4a1942" stroke-width="1"/>
+<text x="230" y="107" text-anchor="middle" fill="#64748b" font-size="9" font-weight="700">STANDARD RAG</text>
+<text x="230" y="122" text-anchor="middle" fill="#64748b" font-size="9">fixed top-k → generate once</text>
+<line x1="450" y1="96" x2="450" y2="128" stroke="#4a1942" stroke-width="1"/>
+<text x="450" y="112" text-anchor="middle" fill="#ec4899" font-size="14" font-weight="800">VS</text>
+<text x="670" y="107" text-anchor="middle" fill="#f472b6" font-size="9" font-weight="700">AGENTIC RAG</text>
+<text x="670" y="122" text-anchor="middle" fill="#f472b6" font-size="9">plan → act → reflect → loop</text>
+
+<!-- ─────────────────────────────────────────
+     ENTRY: USER QUERY
+     ───────────────────────────────────────── -->
+<rect x="300" y="148" width="300" height="52" rx="8" fill="#0d0820" stroke="#ec4899" stroke-width="2"/>
+<text x="450" y="170" text-anchor="middle" fill="#f9a8d4" font-size="13" font-weight="700">💬 User Query</text>
+<text x="450" y="188" text-anchor="middle" fill="#64748b" font-size="9">complex  ·  multi-part  ·  cross-document</text>
+
+<line x1="450" y1="200" x2="450" y2="224" stroke="#ec4899" stroke-width="2" marker-end="url(#aPk)"/>
+
+<!-- ─────────────────────────────────────────
+     AGENT BRAIN
+     ───────────────────────────────────────── -->
+<rect x="40" y="226" width="820" height="64" rx="8" fill="#0d0820" stroke="#ec4899" stroke-width="2"/>
+<rect x="40" y="226" width="820" height="24" rx="8" fill="#1f0a30"/>
+<text x="450" y="243" text-anchor="middle" fill="#f472b6" font-size="12" font-weight="700">🧠 AGENT  (LLM as Orchestrator)</text>
+<text x="230" y="268" text-anchor="middle" fill="#94a3b8" font-size="9">Receives: query + conversation history + prior observations</text>
+<text x="670" y="268" text-anchor="middle" fill="#94a3b8" font-size="9">Outputs: JSON  { "thought": "...", "tool": "...", "args": {...} }</text>
+<line x1="450" y1="232" x2="450" y2="286" stroke="#334155" stroke-width="1"/>
+
+<!-- Loop indicator -->
+<text x="862" y="252" text-anchor="middle" fill="#ec4899" font-size="9" font-weight="700">MAX</text>
+<text x="862" y="265" text-anchor="middle" fill="#ec4899" font-size="16" font-weight="800">5</text>
+<text x="862" y="278" text-anchor="middle" fill="#ec4899" font-size="9" font-weight="700">ITER</text>
+
+<!-- Arrows to tools -->
+<line x1="450" y1="290" x2="450" y2="316" stroke="#ec4899" stroke-width="2" marker-end="url(#aPk)"/>
+
+<!-- ─────────────────────────────────────────
+     TOOL BELT
+     ───────────────────────────────────────── -->
+<text x="450" y="334" text-anchor="middle" fill="#64748b" font-size="9" letter-spacing="3" font-weight="700">TOOL BELT</text>
+
+<!-- Tool 1: search_chunks -->
+<rect x="40"  y="342" width="154" height="82" rx="7" fill="#0a1628" stroke="#0891b2" stroke-width="1.5"/>
+<text x="117" y="362" text-anchor="middle" fill="#22d3ee" font-size="10" font-weight="700">🔍 search_chunks</text>
+<line x1="50" y1="368" x2="184" y2="368" stroke="#1e293b" stroke-width="1"/>
+<text x="117" y="382" text-anchor="middle" fill="#475569" font-size="8">Fine-grained retrieval</text>
+<text x="117" y="394" text-anchor="middle" fill="#475569" font-size="8">query, top_k</text>
+<text x="117" y="406" text-anchor="middle" fill="#22d3ee" font-size="8" font-weight="600">Best for: facts,</text>
+<text x="117" y="418" text-anchor="middle" fill="#22d3ee" font-size="8" font-weight="600">definitions, code</text>
+
+<!-- Tool 2: search_pages -->
+<rect x="208" y="342" width="154" height="82" rx="7" fill="#0a1628" stroke="#0891b2" stroke-width="1.5"/>
+<text x="285" y="362" text-anchor="middle" fill="#22d3ee" font-size="10" font-weight="700">📄 search_pages</text>
+<line x1="218" y1="368" x2="352" y2="368" stroke="#1e293b" stroke-width="1"/>
+<text x="285" y="382" text-anchor="middle" fill="#475569" font-size="8">Broad page retrieval</text>
+<text x="285" y="394" text-anchor="middle" fill="#475569" font-size="8">query, top_k</text>
+<text x="285" y="406" text-anchor="middle" fill="#22d3ee" font-size="8" font-weight="600">Best for: overviews,</text>
+<text x="285" y="418" text-anchor="middle" fill="#22d3ee" font-size="8" font-weight="600">multi-section topics</text>
+
+<!-- Tool 3: filter_by_file -->
+<rect x="376" y="342" width="154" height="82" rx="7" fill="#0a1628" stroke="#0891b2" stroke-width="1.5"/>
+<text x="453" y="362" text-anchor="middle" fill="#22d3ee" font-size="10" font-weight="700">📁 filter_by_file</text>
+<line x1="386" y1="368" x2="520" y2="368" stroke="#1e293b" stroke-width="1"/>
+<text x="453" y="382" text-anchor="middle" fill="#475569" font-size="8">Single doc search</text>
+<text x="453" y="394" text-anchor="middle" fill="#475569" font-size="8">filename, query, top_k</text>
+<text x="453" y="406" text-anchor="middle" fill="#22d3ee" font-size="8" font-weight="600">Best for: known</text>
+<text x="453" y="418" text-anchor="middle" fill="#22d3ee" font-size="8" font-weight="600">source questions</text>
+
+<!-- Tool 4: summarise_doc -->
+<rect x="544" y="342" width="154" height="82" rx="7" fill="#0a1628" stroke="#0891b2" stroke-width="1.5"/>
+<text x="621" y="362" text-anchor="middle" fill="#22d3ee" font-size="10" font-weight="700">📋 summarise_doc</text>
+<line x1="554" y1="368" x2="688" y2="368" stroke="#1e293b" stroke-width="1"/>
+<text x="621" y="382" text-anchor="middle" fill="#475569" font-size="8">Full doc overview</text>
+<text x="621" y="394" text-anchor="middle" fill="#475569" font-size="8">filename</text>
+<text x="621" y="406" text-anchor="middle" fill="#22d3ee" font-size="8" font-weight="600">Best for: "what is</text>
+<text x="621" y="418" text-anchor="middle" fill="#22d3ee" font-size="8" font-weight="600">this doc about?"</text>
+
+<!-- Tool 5: answer (special) -->
+<rect x="712" y="342" width="148" height="82" rx="7" fill="#0a1628" stroke="#ec4899" stroke-width="2"/>
+<rect x="712" y="342" width="148" height="24" rx="7" fill="#2d0a1a"/>
+<text x="786" y="358" text-anchor="middle" fill="#f472b6" font-size="10" font-weight="700">✅ answer</text>
+<line x1="722" y1="366" x2="850" y2="366" stroke="#1e293b" stroke-width="1"/>
+<text x="786" y="380" text-anchor="middle" fill="#475569" font-size="8">Ends the loop</text>
+<text x="786" y="392" text-anchor="middle" fill="#475569" font-size="8">answer, confident</text>
+<text x="786" y="406" text-anchor="middle" fill="#f472b6" font-size="8" font-weight="600">Call when you have</text>
+<text x="786" y="418" text-anchor="middle" fill="#f472b6" font-size="8" font-weight="600">enough context</text>
+
+<!-- Arrows: tools → ChromaDB -->
+<line x1="117" y1="424" x2="117" y2="468" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#aC)"/>
+<line x1="285" y1="424" x2="285" y2="468" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#aC)"/>
+<line x1="453" y1="424" x2="453" y2="468" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#aC)"/>
+<line x1="621" y1="424" x2="621" y2="468" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#aC)"/>
+
+<!-- ─────────────────────────────────────────
+     CHROMADB + TOOL EXECUTOR
+     ───────────────────────────────────────── -->
+<rect x="40" y="470" width="660" height="70" rx="8" fill="#0a1628" stroke="#059669" stroke-width="1.5"/>
+<rect x="40" y="470" width="6" height="70" rx="3" fill="url(#gGreen)"/>
+<text x="370" y="490" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">🗄 ToolExecutor  →  ChromaDB  (HNSW + LSH)</text>
+<text x="200" y="510" text-anchor="middle" fill="#64748b" font-size="9">chunk index  (documents)</text>
+<text x="200" y="524" text-anchor="middle" fill="#475569" font-size="8">200w chunks · cosine similarity</text>
+<line x1="370" y1="476" x2="370" y2="534" stroke="#1e293b" stroke-width="1"/>
+<text x="540" y="510" text-anchor="middle" fill="#64748b" font-size="9">page index  (page_index)</text>
+<text x="540" y="524" text-anchor="middle" fill="#475569" font-size="8">500w pages · O(log n) HNSW search</text>
+
+<!-- answer tool no-DB annotation -->
+<rect x="712" y="470" width="148" height="70" rx="8" fill="#0d0820" stroke="#4a1942" stroke-width="1" stroke-dasharray="4,2"/>
+<text x="786" y="500" text-anchor="middle" fill="#4a1942" font-size="9">answer tool</text>
+<text x="786" y="514" text-anchor="middle" fill="#4a1942" font-size="9">bypasses DB</text>
+<text x="786" y="528" text-anchor="middle" fill="#4a1942" font-size="9">→ produces answer</text>
+
+<!-- Arrow: DB → Observation -->
+<line x1="370" y1="540" x2="370" y2="562" stroke="#34d399" stroke-width="2" marker-end="url(#aG)"/>
+
+<!-- ─────────────────────────────────────────
+     OBSERVATION
+     ───────────────────────────────────────── -->
+<rect x="40" y="564" width="660" height="56" rx="8" fill="#0a1628" stroke="#334155" stroke-width="1.5"/>
+<text x="370" y="584" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="700">📡 Observation  (Tool Result)</text>
+<text x="200" y="604" text-anchor="middle" fill="#64748b" font-size="9">ranked chunks  ·  scores  ·  filenames  ·  locations</text>
+<text x="540" y="604" text-anchor="middle" fill="#64748b" font-size="9">added to accumulated context  ·  sources tracked</text>
+
+<!-- Arrow: observation → reflection -->
+<line x1="370" y1="620" x2="370" y2="644" stroke="#fbbf24" stroke-width="2" marker-end="url(#aY)"/>
+
+<!-- ─────────────────────────────────────────
+     SELF-REFLECTION
+     ───────────────────────────────────────── -->
+<rect x="40" y="646" width="660" height="80" rx="8" fill="#0a1628" stroke="#b45309" stroke-width="1.5"/>
+<rect x="40" y="646" width="6" height="80" rx="3" fill="url(#gYellow)"/>
+<text x="370" y="668" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="700">🪞 Self-Reflection</text>
+<text x="370" y="686" text-anchor="middle" fill="#94a3b8" font-size="10">"Do I have enough information to answer the user's question?"</text>
+<text x="190" y="710" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700">✓ YES  →  call answer()</text>
+<text x="550" y="710" text-anchor="middle" fill="#f87171" font-size="10" font-weight="700">✗ NO  →  plan next tool call</text>
+
+<!-- Loop back arrow -->
+<path d="M 860 260 C 890 260 890 710 860 710" stroke="#ec4899" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+<line x1="860" y1="710" x2="724" y2="710" stroke="#ec4899" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#aPk)"/>
+<text x="890" y="430" text-anchor="middle" fill="#ec4899" font-size="9" font-weight="700" transform="rotate(90 890 430)">ITERATE  (max 5x)</text>
+
+<!-- Arrow: reflection → answer (if YES) -->
+<line x1="370" y1="726" x2="370" y2="752" stroke="#34d399" stroke-width="2" marker-end="url(#aG)"/>
+
+<!-- ─────────────────────────────────────────
+     FINAL ANSWER + TRACE
+     ───────────────────────────────────────── -->
+<rect x="40" y="754" width="820" height="100" rx="8" fill="#0a1628" stroke="#059669" stroke-width="2"/>
+<rect x="40" y="754" width="820" height="28" rx="8" fill="#0a2218"/>
+<text x="450" y="773" text-anchor="middle" fill="#34d399" font-size="13" font-weight="700">✅ Final Answer  +  Reasoning Trace</text>
+<text x="200" y="798" text-anchor="middle" fill="#64748b" font-size="9" font-weight="600">ANSWER</text>
+<text x="200" y="812" text-anchor="middle" fill="#94a3b8" font-size="9">full text with inline citations</text>
+<text x="200" y="826" text-anchor="middle" fill="#94a3b8" font-size="9">[Source: filename] markers</text>
+<line x1="360" y1="762" x2="360" y2="846" stroke="#1e293b" stroke-width="1"/>
+<text x="510" y="798" text-anchor="middle" fill="#64748b" font-size="9" font-weight="600">TRACE</text>
+<text x="510" y="812" text-anchor="middle" fill="#94a3b8" font-size="9">thought per iteration</text>
+<text x="510" y="826" text-anchor="middle" fill="#94a3b8" font-size="9">tool + args + result</text>
+<line x1="660" y1="762" x2="660" y2="846" stroke="#1e293b" stroke-width="1"/>
+<text x="760" y="798" text-anchor="middle" fill="#64748b" font-size="9" font-weight="600">METADATA</text>
+<text x="760" y="812" text-anchor="middle" fill="#94a3b8" font-size="9">sources · scores</text>
+<text x="760" y="826" text-anchor="middle" fill="#94a3b8" font-size="9">iterations · cache_hit</text>
+<text x="760" y="840" text-anchor="middle" fill="#94a3b8" font-size="9">confident flag</text>
+
+<!-- ─────────────────────────────────────────
+     EXAMPLE TRACE
+     ───────────────────────────────────────── -->
+<rect x="40" y="870" width="820" height="144" rx="8" fill="#040810" stroke="#1e293b" stroke-width="1"/>
+<text x="60" y="890" fill="#64748b" font-size="9" font-weight="700" letter-spacing="2">EXAMPLE TRACE  —  "Compare HNSW and LSH across all documents"</text>
+<line x1="50" y1="896" x2="850" y2="896" stroke="#0f172a" stroke-width="1"/>
+<text x="60" y="912" fill="#ec4899" font-size="8">[1]</text><text x="76" y="912" fill="#64748b" font-size="8">thought:</text><text x="122" y="912" fill="#94a3b8" font-size="8">"I need to find information about HNSW first"</text>
+<text x="76" y="924" fill="#22d3ee" font-size="8">→ search_chunks({"query": "HNSW hierarchical navigable small world", "top_k": 4})</text>
+<text x="76" y="936" fill="#34d399" font-size="8">← [vector_databases.md chunk 3/8 · score 0.93]  "HNSW builds a multi-layer graph..."</text>
+<text x="60" y="952" fill="#ec4899" font-size="8">[2]</text><text x="76" y="952" fill="#64748b" font-size="8">thought:</text><text x="122" y="952" fill="#94a3b8" font-size="8">"Now I need LSH information"</text>
+<text x="76" y="964" fill="#22d3ee" font-size="8">→ search_chunks({"query": "LSH locality sensitive hashing", "top_k": 4})</text>
+<text x="76" y="976" fill="#34d399" font-size="8">← [chromadb_guide.txt chunk 2/5 · score 0.89]  "LSH hashes similar vectors..."</text>
+<text x="60" y="992" fill="#ec4899" font-size="8">[3]</text><text x="76" y="992" fill="#64748b" font-size="8">thought:</text><text x="122" y="992" fill="#94a3b8" font-size="8">"I have enough context for a complete comparison"</text>
+<text x="76" y="1004" fill="#f472b6" font-size="8">→ answer({"answer": "HNSW uses multi-layer graphs for O(log n) search...", "confident": true})</text>
+
+<!-- footer -->
+<rect x="0" y="1032" width="900" height="28" fill="#080612"/>
+<text x="450" y="1050" text-anchor="middle" fill="#1f0a30" font-size="9" letter-spacing="2">AGENTIC RAG  ·  agentic_rag.py  ·  AgenticRAG  ·  ToolExecutor  ·  ReAct Framework</text>
+
+</svg>
