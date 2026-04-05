@@ -1,4 +1,4 @@
-#  Applied RAG [Standard & Agentic] Pipeline
+#  RAG [Standard & Agentic] Pipeline
 
 > Cache-Augmented Generation with Context Engineering, Semantic Search, Embeddings, Chunking, page Index,Web Chat UI, and MCP Server for Claude Desktop.
 
