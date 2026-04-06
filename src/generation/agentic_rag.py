@@ -1,32 +1,3 @@
-"""
-Agentic RAG — LLM-driven retrieval with tool use, self-reflection, and
-iterative reasoning loops.
-
-Architecture:
-    Query
-      │
-      ▼
-    Agent plans which tools to call
-      │
-      ├── search_chunks()    — semantic chunk search
-      ├── search_pages()     — semantic page search
-      ├── filter_by_file()   — retrieve from a specific document
-      ├── summarise_doc()    — summarise an entire document
-      └── answer()           — produce final answer with citations
-      │
-      ▼
-    Agent reflects: "Is my answer complete?"
-      ├── YES → return answer
-      └── NO  → plan next tool call (up to MAX_ITERATIONS)
-
-Usage:
-    from agentic_rag import AgenticRAG
-    agent = AgenticRAG(chunk_col, page_col, cache)
-    result = agent.run("What are the key differences between HNSW and LSH?")
-    print(result["answer"])
-    print(result["trace"])   # full reasoning trace
-"""
-
 import json, re, sys
 from typing import List, Dict, Optional, Any
 from dataclasses import dataclass, field

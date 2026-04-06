@@ -1,15 +1,3 @@
-"""
-Semantic search — chunk-level and page-level indexes.
-
-Usage:
-    python search.py                              # interactive REPL
-    python search.py "what is RAG?"               # chunk search (default)
-    python search.py "what is RAG?" --mode page   # page search
-    python search.py "what is RAG?" --mode both   # chunk + page side-by-side
-    python search.py "what is RAG?" --top 5       # top 5 results
-    python search.py "what is RAG?" --file rag_explained.txt  # filter by file
-"""
-
 import sys, argparse, chromadb
 from typing import List, Optional
 from chromadb import EmbeddingFunction, Embeddings

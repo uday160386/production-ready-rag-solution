@@ -121,6 +121,8 @@ HTML = """<!DOCTYPE html>
   .source-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); }
   .source-item .src-file { color: var(--accent2); font-weight: 600; }
   .score-bar { width: 40px; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .gw-list { margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(239,68,68,.2); }
+  .gw-item { font-size: 11px; color: #f87171; background: rgba(239,68,68,.07); padding: 3px 8px; border-radius: 4px; margin-bottom: 3px; }
   .ctx-steps { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 3px; }
   .ctx-row { display: flex; gap: 8px; font-size: 11px; }
   .ctx-label { color: var(--muted); min-width: 90px; }
@@ -327,6 +329,13 @@ HTML = """<!DOCTYPE html>
           </div>`).join("") + `</div>`
       : "";
 
+    // Guardrail warnings
+    const gWarnings = data.guardrail_warnings || [];
+    const gwHtml = gWarnings.length ? `
+      <div class="gw-list">
+        ${gWarnings.map(w => `<div class="gw-item">⚠ ${escHtml(w)}</div>`).join("")}
+      </div>` : "";
+
     // Context engineering steps
     const steps = data.context_steps || {};
     const ctxHtml = Object.keys(steps).length ? `
@@ -344,6 +353,7 @@ HTML = """<!DOCTYPE html>
           ${cacheTag}
           <p>${escHtml(data.answer).replace(/\\n/g,"<br>")}</p>
           ${srcHtml}
+          ${gwHtml}
           ${ctxHtml}
         </div>
       </div>`);
@@ -442,7 +452,8 @@ async def websocket_endpoint(websocket: WebSocket):
                         "answer"        : result["answer"],
                         "cache_hit"     : result["cache_hit"],
                         "sources"       : result["sources"],
-                        "context_steps" : result.get("context_steps", {}),
+                        "context_steps"      : result.get("context_steps", {}),
+                        "guardrail_warnings" : result.get("guardrail_warnings", []),
                         "query"         : data["query"],
                     }))
                 except Exception as e:

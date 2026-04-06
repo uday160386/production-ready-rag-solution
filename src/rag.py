@@ -1,9 +1,43 @@
+"""
+Cache-Augmented Generation (CAG) using Redis + ChromaDB + Google Gemini.
+
+Architecture:
+    Query → Redis cache hit?  ──yes──► return cached answer
+                 │ no
+                 ▼
+           ChromaDB semantic search (retrieve top-k chunks)
+                 │
+                 ▼
+           Gemini (generate answer from chunks)
+                 │
+                 ▼
+           Store in Redis (TTL) → return answer
+
+Setup:
+    pip install google-genai redis chromadb sentence-transformers
+
+    # Start Redis:
+    docker run -d -p 6379:6379 redis
+    # or: brew install redis && redis-server
+
+    # Set your Google API key:
+    export GOOGLE_API_KEY="..."
+
+Usage:
+    python rag.py                          # interactive REPL
+    python rag.py "what is RAG?"           # single query
+    python rag.py "what is RAG?" --top 5   # top 5 chunks as context
+    python rag.py --flush                  # clear all cached answers
+    python rag.py --stats                  # show cache stats
+"""
+
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning, module="google")
 import os, sys, hashlib, json, argparse, textwrap, chromadb
 from typing import List, Optional
 from chromadb import EmbeddingFunction, Embeddings
 from context_engine import ContextEngine
+from guardrails import Guardrails, GuardrailConfig, PipelineGuardrailResult
 
 # ── Config ─────────────────────────────────────────────────────────────────────
 CHROMA_PATH   = "./chroma_db"
@@ -37,6 +71,14 @@ MAX_TOKENS          = 1024
 MAX_CONTEXT_TOKENS  = 3000   # token budget for retrieved context
 MMR_LAMBDA          = 0.7    # 1.0=pure relevance, 0.0=pure diversity
 COMPRESS_RATIO      = 0.7    # fraction of sentences to keep per chunk
+
+# ── Guardrail config ───────────────────────────────────────────────────────────
+GUARDRAILS_ENABLED    = True
+TOPIC_WHITELIST       = []     # e.g. ["AI", "python", "databases"] — empty = allow all
+TOPIC_BLOCK_OFF_TOPIC = False  # True = hard block, False = warn only
+PII_REDACT            = True   # redact PII from queries and answers
+RATE_LIMIT_ENABLED    = False  # enable Redis-backed rate limiting
+MIN_CONFIDENCE_SCORE  = 0.3    # warn when top retrieval score is below this
 
 SYSTEM_PROMPT = (
     "You are a helpful assistant that answers questions using only the provided "
@@ -162,6 +204,23 @@ def get_context_engine() -> ContextEngine:
         )
     return _context_engine
 
+# ── Guardrails (module-level singleton) ───────────────────────────────────────
+_guardrails: Optional[Guardrails] = None
+
+def get_guardrails() -> Optional[Guardrails]:
+    global _guardrails
+    if not GUARDRAILS_ENABLED:
+        return None
+    if _guardrails is None:
+        _guardrails = Guardrails(GuardrailConfig(
+            topic_whitelist       = TOPIC_WHITELIST,
+            topic_block_off_topic = TOPIC_BLOCK_OFF_TOPIC,
+            pii_redact            = PII_REDACT,
+            rate_limit_enabled    = RATE_LIMIT_ENABLED,
+            min_confidence_score  = MIN_CONFIDENCE_SCORE,
+        ))
+    return _guardrails
+
 # ── Generation ────────────────────────────────────────────────────────────────
 def _build_context(chunks: List[dict]) -> str:
     return "\n\n".join(
@@ -256,6 +315,22 @@ def rag_query(
     top_k      : int  = DEFAULT_TOP_K,
     no_cache   : bool = False,
 ) -> dict:
+    # 0. Input guardrails
+    guards = get_guardrails()
+    if guards:
+        gr = guards.check_input(query)
+        if not gr.passed:
+            return {
+                "query"    : query,
+                "answer"   : f"⚠ Request blocked: {gr.block_reason}",
+                "blocked"  : True,
+                "blocked_by": gr.blocked_by,
+                "sources"  : [],
+                "cache_hit": False,
+            }
+        if gr.redacted_input:
+            query = gr.redacted_input   # use sanitised query
+
     # 1. Cache lookup
     if not no_cache:
         cached = cache.get(query, top_k)
@@ -276,14 +351,24 @@ def rag_query(
     # 5. Record turn in conversation memory
     ctx.record_answer(query, answer)
 
-    # 4. Cache & return
+    # 4. Output guardrails
+    if guards:
+        og = guards.check_output(answer, chunks)
+        if og.redacted_output:
+            answer = og.redacted_output
+        guardrail_warnings = og.warnings
+    else:
+        guardrail_warnings = []
+
+    # 5. Cache & return
     payload = {
         "query"    : query,
         "answer"   : answer,
         "model"    : OLLAMA_MODEL if LLM_PROVIDER == "ollama" else GEMINI_MODEL,
         "sources"  : [{"file": c["filename"], "location": c["location"], "source": c["source"], "score": c["score"]} for c in chunks],
-        "cache_hit"     : False,
-        "context_steps" : prepared.get("steps", {}),
+        "cache_hit"          : False,
+        "context_steps"      : prepared.get("steps", {}),
+        "guardrail_warnings" : guardrail_warnings,
     }
     if not no_cache:
         cache.set(query, top_k, payload)

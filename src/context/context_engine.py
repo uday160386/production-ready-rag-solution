@@ -1,15 +1,3 @@
-"""
-Context Engineering for RAG.
-
-Implements:
-  1. Query Rewriting     — expand/clarify query using conversation history
-  2. Context Compression — remove irrelevant sentences from retrieved chunks
-  3. Context Ranking     — MMR (Maximal Marginal Relevance) to reduce redundancy
-  4. Token Budgeting     — fit context within a token limit
-  5. Conversation Memory — maintain rolling chat history with summary compression
-  6. System Prompt Builder — assemble the final LLM prompt from all components
-"""
-
 import re, math
 from typing import List, Dict, Optional
 from dataclasses import dataclass, field
